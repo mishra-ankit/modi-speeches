@@ -5,8 +5,7 @@ Data is updated once everyday using Github Action.
 ### How to use -
 
 All data is available in - [data.csv](data.csv)
-
-Also available as [Kaggle Dataset](https://www.kaggle.com/datasets/ankitmishra0/narendra-modi-speeches?select=data.csv)
+Also available as [kaggle dataset](https://www.kaggle.com/datasets/ankitmishra0/narendra-modi-speeches?select=data.csv)
 
 #### Data columns - 
 
