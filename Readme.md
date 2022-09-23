@@ -7,12 +7,15 @@ Data is updated once everyday using Github Action.
 All data is available in - [data.csv](data.csv)
 
 #### Data columns - 
- - href        : link to speech 
- - title       : title of speech
- - date        : date of speech
- - img         : image src for the main image on page
- - youtubeURL  : URL for video of the speech, if available
- - speechText.  : Full text of speech
+
+| Column name | Description |
+|--|--|
+| href | full URL of speech (example [link](https://www.narendramodi.in/text-of-prime-minister-narendra-modi-addresses-council-of-mayors-and-deputy-mayors-of-bjp-in-gujarat-564556))  |
+|title||
+|date||
+|img|image src for the main image on page|
+|youtubeURL|Youtube URL of the speech, if available|
+|speechText|full text of speech|
 
 ### Data source - 
 Website - https://www.narendramodi.in/category/text-speeches
