@@ -7,14 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Script
-        run: >
-          npm ci
-          node ./main.js
+      - name: Install dependencies
+        run: npm ci
+      - name: Data update
+        run: node main.js
       - name: Commit
         if: ${{ always() }}
         uses: stefanzweifel/git-auto-commit-action@v4.8.0
