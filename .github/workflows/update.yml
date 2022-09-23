@@ -5,7 +5,7 @@ on:
   - cron:  '0 0 * * *'
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -19,3 +19,8 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4.8.0
         with:
           commit_message: update dataset
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Speech Dataset
+          path: data.csv
