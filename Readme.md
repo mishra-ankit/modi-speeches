@@ -20,3 +20,8 @@ Also available as [kaggle dataset](https://www.kaggle.com/datasets/ankitmishra0/
 For english speeches - https://www.narendramodi.in/speech/loadspeeche?page=1&language=hi
 
 For speeches in hindi - https://www.narendramodi.in/speech/loadspeeche?page=1&language=en 
+
+
+TODO -
+
+- [ ] Use https://www.pmindia.gov.in/en/tag/pmspeech/ for collecting older speeches
