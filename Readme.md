@@ -1,16 +1,18 @@
-Continuously update collection of transcripts of public speeches given by [Narendra Modi](https://en.wikipedia.org/wiki/Narendra_Modi) scraped from official website - [https://narendramodi.in](https://www.narendramodi.in/category/text-speeches). Contains over 860 speeches and counting.
+Continuously update collection of transcripts of public speeches given by [Narendra Modi](https://en.wikipedia.org/wiki/Narendra_Modi). 
+Collected from official website - [https://narendramodi.in](https://www.narendramodi.in/category/text-speeches). Contains over 860 speeches and counting.
+Data is updated once everyday using Github Action.
 
 ### How to use -
 
 All data is available in - [data.csv](data.csv)
 
-#### Columns in CSV - 
- - href
- - title
- - date
- - img
- - youtubeURL
- - speechText
+#### Data columns - 
+ - href        : link to speech 
+ - title       : title of speech
+ - date        : date of speech
+ - img         : image src for the main image on page
+ - youtubeURL  : URL for video of the speech, if available
+ - speechText.  : Full text of speech
 
 ### Data source - 
 Website - https://www.narendramodi.in/category/text-speeches
