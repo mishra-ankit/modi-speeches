@@ -4,6 +4,22 @@ import path from 'path';
 import { CSVFile } from "./CSVFile.js";
 const { JSDOM } = jsdom;
 
+// Helper for retrying JSDOM fetches
+async function fetchJSDOMWithRetry(url, retries = 3, delay = 2000) {
+    const options = {
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+    };
+    for (let i = 0; i <= retries; i++) {
+        try {
+            return await JSDOM.fromURL(url, options);
+        } catch (error) {
+            if (i === retries) throw error;
+            console.log(`Error fetching ${url}: ${error.message}. Retrying in ${delay / 1000}s... (Attempt ${i + 1}/${retries})`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+    }
+}
+
 // Get language from command line argument (default to 'hi')
 const lang = process.argv[2] || "hi";
 if (!["hi", "en"].includes(lang)) {
@@ -57,7 +73,7 @@ function loadExistingUrls() {
         const url = `https://www.narendramodi.in/speech/loadspeeche?page=${page}&language=${lang}`;
         try {
             console.log(`Fetching page ${page}...`);
-            const dom = (await JSDOM.fromURL(url));
+            const dom = await fetchJSDOMWithRetry(url);
             const document = dom.window.document;
 
             const speechesBox = Array.from(document.querySelectorAll(".speechesBox"));
@@ -155,7 +171,7 @@ function loadExistingUrls() {
 
 async function getSpeechInfo(url) {
     console.log("Speech info: ", url);
-    const dom = await JSDOM.fromURL(url);
+    const dom = await fetchJSDOMWithRetry(url);
     const document = dom.window.document;
 
     const articleBody = document.querySelector(".articleBody");
