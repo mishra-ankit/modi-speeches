@@ -6,14 +6,14 @@ An automatically-updated archive of Prime Minister Narendra Modi's public speech
 
 [**🌐 View Interactive Dashboard**](https://mishra-ankit.github.io/modi-speeches)
 
-## 📊 Current Stats
+## Current Stats
 2999 speeches (2050 Hindi + 949 English). Data is sourced from [narendramodi.in](https://www.narendramodi.in) and updated daily.
 > **Note:** Some speeches in the English collection may contain Hindi text as they are scraped as-is from the source.
 
 ## ⚠️ Disclaimer
 **For research and analytical purposes only.** This repository archives published speech texts and does not represent an endorsement. Texts are scraped from official publications and may differ from spoken delivery.
 
-## 📁 Data Access
+## Data Access
 Speeches are stored in CSV format in the `docs/` folder:
 - **[data_hi.csv](docs/data_hi.csv)** (Hindi)
 - **[data_en.csv](docs/data_en.csv)** (English)
