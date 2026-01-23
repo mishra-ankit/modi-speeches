@@ -1,5 +1,5 @@
 import fs from 'fs';
-import csv from '@fast-csv/format';
+import * as csv from 'fast-csv';
 
 export class CSVFile {
     static write(filestream, rows, options) {

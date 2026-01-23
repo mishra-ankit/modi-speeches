@@ -1,27 +1,42 @@
-Up to date collection of transcript (and metadata) of the speeches given by [Narendra Modi](https://en.wikipedia.org/wiki/Narendra_Modi) made publicly available at [https://narendramodi.in](https://www.narendramodi.in/category/text-speeches). 
-Contains over 860 speeches and counting. Data is **automatically updated once a day**.
+# 🎤 PM Modi Speeches Archive
 
-All data is available in - [data.csv](data.csv)
-Also available as [kaggle dataset](https://www.kaggle.com/datasets/ankitmishra0/narendra-modi-speeches?select=data.csv)
+[![Auto Update](https://github.com/mishra-ankit/modi-speeches/actions/workflows/update.yml/badge.svg)](https://github.com/mishra-ankit/modi-speeches/actions/workflows/update.yml)
 
-#### Data columns - 
+An automatically-updated archive of Prime Minister Narendra Modi's public speeches.
 
-| Column name | Description |
-|--|--|
-| href | full URL of speech (example [link](https://www.narendramodi.in/text-of-prime-minister-narendra-modi-addresses-council-of-mayors-and-deputy-mayors-of-bjp-in-gujarat-564556))  |
-|title||
-|date||
-|img|image src for the main image on page|
-|youtubeURL|Youtube URL of the speech, if available|
-|speechText|full text of speech|
+## 📊 Current Stats
+2995 speeches (2048 Hindi + 947 English). Data is sourced from [narendramodi.in](https://www.narendramodi.in) and updated daily.
+> **Note:** Some speeches in the English collection may contain Hindi text as they are scraped as-is from the source.
 
-#### Endpoint used - 
+## ⚠️ Disclaimer
+**For research and analytical purposes only.** This repository archives published speech texts and does not represent an endorsement. Texts are scraped from official publications and may differ from spoken delivery.
 
-For english speeches - https://www.narendramodi.in/speech/loadspeeche?page=1&language=hi
+## 📁 Data Access
+Speeches are stored in CSV format in the `docs/` folder:
+- **[data_hi.csv](docs/data_hi.csv)** (Hindi)
+- **[data_en.csv](docs/data_en.csv)** (English)
+- **[Kaggle Dataset](https://www.kaggle.com/datasets/ankitmishra0/narendra-modi-speeches)** (Mirrored)
 
-For speeches in hindi - https://www.narendramodi.in/speech/loadspeeche?page=1&language=en 
+**Columns**: `href`, `title`, `date`, `img`, `youtubeURL`, `speechText`
 
+## 🛠️ Development
 
-TODO -
+```bash
+# Install
+npm install
 
-- [ ] Use https://www.pmindia.gov.in/en/tag/pmspeech/ for collecting older speeches
+# Scrape & Update
+npm run scrape:hi
+npm run scrape:en
+npm run build
+```
+
+## 🤝 Contributing
+Open an [issue](https://github.com/mishra-ankit/modi-speeches/issues) or submit a PR. 
+
+## 📄 License
+See [LICENSE.md](LICENSE.md).
+
+---
+*Last auto-update: Check the [Actions tab](https://github.com/mishra-ankit/modi-speeches/actions) for the latest run*
+

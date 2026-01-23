@@ -10,17 +10,71 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v5
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
       - name: Install dependencies
         run: npm ci
-      - name: Data update
-        run: node main.js
-      - name: Commit
-        if: ${{ always() }}
-        uses: stefanzweifel/git-auto-commit-action@v4.8.0
+
+      - name: Scrape Hindi speeches
+        id: scrape_hi
+        run: npm run scrape:hi
+        continue-on-error: true
+        
+      - name: Scrape English speeches
+        id: scrape_en
+        run: npm run scrape:en
+        continue-on-error: true
+        
+      - name: Build JSON and update stats
+        run: npm run build
+
+      - name: Check for data changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain docs/data_*.csv)" ]; then
+            echo "data_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "data_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Prepare commit message
+        id: commit_msg
+        run: |
+          HI_ADDED=${{ steps.scrape_hi.outputs.added_count }}
+          EN_ADDED=${{ steps.scrape_en.outputs.added_count }}
+          HI_ADDED=${HI_ADDED:-0}
+          EN_ADDED=${EN_ADDED:-0}
+          
+          TOTAL=$((HI_ADDED + EN_ADDED))
+          
+          if [ "$TOTAL" -gt 0 ]; then
+            echo "msg=🤖 Auto-update: Added $TOTAL new speeches ($HI_ADDED Hindi, $EN_ADDED English)" >> $GITHUB_OUTPUT
+          else
+            echo "msg=🤖 Auto-update: Daily stats refresh (No new speeches)" >> $GITHUB_OUTPUT
+          fi
+        
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: update dataset
-      - name: 'Upload Artifact'
+          commit_message: ${{ steps.commit_msg.outputs.msg }}
+          file_pattern: "docs/data_*.csv docs/*.json Readme.md"
+          
+      - name: Upload Hindi speeches artifact
+        if: steps.check_changes.outputs.data_changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Speech Dataset
-          path: data.csv
+          name: Hindi-Speeches-Dataset
+          path: docs/data_hi.csv
+          
+      - name: Upload English speeches artifact
+        if: steps.check_changes.outputs.data_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: English-Speeches-Dataset
+          path: docs/data_en.csv
+
+

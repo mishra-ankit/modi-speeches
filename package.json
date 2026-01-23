@@ -5,13 +5,16 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrape:hi": "node main.js hi",
+    "scrape:en": "node main.js en",
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fast-csv/format": "^5.0.5",
+    "fast-csv": "^5.0.5",
     "jsdom": "^27.4.0"
   }
 }
