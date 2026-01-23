@@ -72,4 +72,17 @@ jobs:
           name: English-Speeches-Dataset
           path: docs/data_en.csv
 
+      - name: Update Kaggle Dataset
+        if: steps.check_changes.outputs.data_changed == 'true'
+        env:
+          KAGGLE_CONFIG: ${{ secrets.KAGGLE_CONFIG }}
+        run: |
+          pip install kaggle
+          mkdir -p ~/.kaggle
+          echo "$KAGGLE_CONFIG" > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+          mkdir -p kaggle_upload
+          cp docs/data_*.csv kaggle_upload/
+          cp dataset-metadata.json kaggle_upload/
+          kaggle datasets version -p kaggle_upload -m "${{ steps.commit_msg.outputs.msg }}"
 
