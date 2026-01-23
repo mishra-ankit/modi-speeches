@@ -1,4 +1,4 @@
-# 🎤 PM Modi Speeches Archive
+# PM Modi Speeches Archive
 
 [![Auto Update](https://github.com/mishra-ankit/modi-speeches/actions/workflows/update.yml/badge.svg)](https://github.com/mishra-ankit/modi-speeches/actions/workflows/update.yml)
 
@@ -6,7 +6,7 @@ An automatically-updated archive of Prime Minister Narendra Modi's public speech
 
 [**🌐 View Interactive Dashboard**](https://mishra-ankit.github.io/modi-speeches)
 
-## 📊 Current Stats
+## Current Stats
 2997 speeches (2049 Hindi + 948 English). Data is sourced from [narendramodi.in](https://www.narendramodi.in) and updated daily.
 > **Note:** Some speeches in the English collection may contain Hindi text as they are scraped as-is from the source.
 
@@ -33,10 +33,7 @@ npm run scrape:en
 npm run build
 ```
 
-## 🤝 Contributing
 Open an [issue](https://github.com/mishra-ankit/modi-speeches/issues) or submit a PR. 
-
-## 📄 License
 See [LICENSE.md](LICENSE.md).
 
 ---
