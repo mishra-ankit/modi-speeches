@@ -83,6 +83,6 @@ jobs:
           chmod 600 ~/.kaggle/kaggle.json
           mkdir -p kaggle_upload
           cp docs/data_*.csv kaggle_upload/
-          cp dataset-metadata.json kaggle_upload/
+          kaggle datasets metadata -p kaggle_upload ankitmishra0/narendra-modi-speeches
           kaggle datasets version -p kaggle_upload -m "${{ steps.commit_msg.outputs.msg }}"
 
